@@ -1,5 +1,5 @@
-Mauricio Gael Pérez Arroyo
-A01706112
+Mauricio Arroyo
+
 Contexto y temática de este proyecto:
 
 Este proyecto lo pensé basado en los sucesos recientes suscitados acontecidos en Acapulco, Guerrero. 
