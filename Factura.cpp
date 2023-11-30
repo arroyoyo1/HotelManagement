@@ -3,12 +3,13 @@
 #include <cstdlib>
 #include "Ticket.h"
 #include "Comida.h"
+#include "Bebida.h"
 using namespace std;
 
 
-void menu(){ //Menú de lo que puede hacer el programa
+void menu(){ //MenÃº de lo que puede hacer el programa
 
-		cout<<"\n\n\n\t\t Bienvenidx al centro de facturas del Hotel\n"<<endl;
+		cout<<"\n\n\n\t\t Bienvenido al centro de facturas del Hotel\n"<<endl;
 		cout<<"\t\t 1 - Realizar factura del cliente 1 "<<endl;
 		cout<<"\t\t 2 - Realizar factura del cliente 2 "<<endl;
 		cout<<"\t\t 3 - Realizar factura del cliente 3"<<endl;
@@ -18,8 +19,14 @@ void menu(){ //Menú de lo que puede hacer el programa
 
 int main() {
 
-	int opcion; //Variable para escoger opción de salir o empezar
+	int opcion; //Variable para escoger opciÃ³n de salir o empezar
 	opcion=1;
+
+	int opcionProducto = 0;
+	string nombre = "";
+	string apellido = "";
+	string direccion = "";
+	string numero = "";
 
 	int continua;//Variable para ciclar el prgrama
 	continua=0;
@@ -36,7 +43,7 @@ int main() {
             Producto producto2 ("Funda para almohada",120, 4);
             //Creo el objeto de la clase cliente
             Cliente cliente1 ("Arroyo", "Mauricio", "Epigmenio Gonzalez 500","4619125782");
-            //Le agrego el número de folio al ticket creando un objeto
+            //Le agrego el nÃºmero de folio al ticket creando un objeto
             Ticket ticket1 ("043778");
             //Agrego los objetos de producto al ticket
             ticket1.agregarProducto (producto1);
@@ -45,97 +52,114 @@ int main() {
             producto1.precioFinal();
             producto2.precioFinal();
             //Imprimo los tickets
-            producto1.ticket();
-            producto2.ticket();
+            cout << producto1.ticket();
+            cout << producto2.ticket();
             //Precio en conjunto de todos los productos
             cout<<"\t\tTotal a pagar: "<<ticket1.precioTicket()<<endl;
             //Imprimo los datos del cliente
-            cliente1.imprimirInfo();
+            cout<<cliente1.imprimirInfo();
             //Imprimo el numero de folio
-            cout<<"\t\tNumero de folio: "<<ticket1.getnumeroFolio()<<endl;
+            cout<<"\t\tNumero de ticket: "<<ticket1.getnumeroFolio()<<endl;
 
         }
-        //Esta opción es para demostrar que se pueden agregar mas de un
+        //Esta opciÃ³n es para demostrar que se pueden agregar mas de un
         //producto
         else if(opcion==2){
 
             cout<<"\n\t\t--TICKET--"<<endl;
-            Producto producto3 ("Termo",800,1);
-            Producto producto4 ("Toalla",350,3);
-            Producto producto5 ("Antifaz",200,2);
+            cout<<"Este ticket solo genera un producto";
+            cout<<"Elige uno de los siguientes productos: 1.Termo | 2. Toalla | 3. Antifaz"<<endl;
+            cin>>opcionProducto;
+            cout<<"Introduce tu nombre"<<endl;
+            cin>>nombre;
+            cout<<"Introduce tu apellido"<<endl;
+            cin>>apellido;
+            cout<<"Introduce tu direccion"<<endl;
+            cin>>direccion;
+            cout<<"Introduce tu numero"<<endl;
+            cin>>numero;
 
-            Cliente cliente2 ("- Man", "Spider", "69th Road, Queens ","1718831695");
 
+            Producto producto;
+
+            if (opcionProducto == 1){
+                producto.setArticulo ("Termo");
+                producto.setPrecio (800);
+                producto.setCantidad(1);
+            }
+
+            if (opcionProducto == 2){
+                producto.setArticulo ("Toalla");
+                producto.setPrecio (350);
+                producto.setCantidad(3);
+            }
+
+            if (opcionProducto == 3){
+                producto.setArticulo ("Antifaz");
+                producto.setPrecio (200);
+                producto.setCantidad(2);
+            }
+
+
+            Cliente clientePersonalizado (apellido, nombre, direccion, numero);
             Ticket ticket2 ("785241");
 
-            //Puedo agregar a ticket los productos que desee
-            ticket2.agregarProducto (producto3);
-            ticket2.agregarProducto (producto4);
-            ticket2.agregarProducto (producto5);
 
-            producto3.precioFinal();
-            producto4.precioFinal();
-            producto5.precioFinal();
+            ticket2.agregarProducto(producto);
+            producto.precioFinal();
+            cout << producto.ticket();
 
-            producto3.ticket();
-            producto4.ticket();
-            producto5.ticket();
+            cout<<"\t\tPrecio Total a pagar: "<<ticket2.precioTicket()<<endl;
 
-            cout<<"\t\tTotal a pagar: "<<ticket2.precioTicket()<<endl;
+            cout<<clientePersonalizado.imprimirInfo();
 
-            cliente2.imprimirInfo();
-
-            cout<<"\t\tNumero de folio: "<<ticket2.getnumeroFolio()<<endl;
+            cout<<"\t\tNumero de ticket: "<<ticket2.getnumeroFolio()<<endl;
 
 
         }
         else if(opcion==3){
 
-            //Utilizo estas sub-clases para los productos que sean únicamente de
+            //Utilizo estas sub-clases para los productos que sean Ãºnicamente de
             //orden alimenticio y poder mostrar las calorias, tipo de cocina, sabor
             //y mililitros de dichos productos
             cout<<"\n\t\t--TICKET--"<<endl;
             Comida comida1 ("Pasta Farfalle",370, 2, "180.85","Italiana");
             Comida comida2 ("Tlayuda de Milanesa", 110, 1, "260.56", "Mexicana");
-            Bebida bebida1 ("Aperol Spritz", 190, 1, "110 ml", "Ligeramente amargo");
-            Bebida bebida2 ("Kosako",89, 1,"2000 ml", "Sabe a elixir de los dioses");
+            Bebida bebida1 ("Aperol Spritz", 190, 1, "110", "Ligeramente amargo");
+            Bebida bebida2 ("Vino Tinto",89, 1,"340", "Afrutado y con un toque amaderado");
 
-            Cliente cliente3 ("Flow", "Danny","Agricola Oriental 423","525613061");
+            Cliente cliente3 ("Villanueva", "Felipe","Los Encinos 423","525613061");
 
             Ticket ticket3 ("498430");
 
-            ticket3.agregarProducto (comida1);
-            ticket3.agregarProducto (comida2);
-            ticket3.agregarProducto (bebida1);
-            ticket3.agregarProducto (bebida2);
+            ticket3.agregarComida (comida1);
+            ticket3.agregarComida (comida2);
+            ticket3.agregarBebida (bebida1);
+            ticket3.agregarBebida (bebida2);
 
             comida1.precioFinal();
-            comida1.imprimirComida();
+            cout << comida1.imprimirComida();
             comida2.precioFinal();
-            comida2.imprimirComida();
+            cout << comida2.imprimirComida();
             bebida1.precioFinal();
-            bebida1.imprimirBebida();
+            cout << bebida1.imprimirBebida();
             bebida2.precioFinal();
-            bebida2.imprimirBebida();
+            cout << bebida2.imprimirBebida();
 
-            Comida imprimirComida();
-            Bebida imprimirBebida();
-            cliente3.imprimirInfo();
+            cout<<cliente3.imprimirInfo();
 
-            cout<<"\t\tTotal a pagar: "<<ticket3.precioTicket()<<endl;
-
-
-            cout<<"\t\tNumero de folio: "<<ticket3.getnumeroFolio()<<endl;
+            cout<<"\t\tPrecio total a pagar: "<<ticket3.precioTicket()<<endl;
+            cout<<"\t\tNumero de ticket: "<<ticket3.getnumeroFolio()<<endl;
 
            }
            //Sale del Ciclo While
-           if(opcion==4){
-			cout<<"Gracias por utilizar ese programa"<<endl;
+           else if(opcion==4){
+			cout<<"Disfruta tus productos"<<endl;
 			continua = continua+1;
            }
 
            else{
-			cout<<"Error"<<endl;
+			cout<<"Error: Opcion no valida"<<endl;
 			continua = continua+1;
 		}
     }
