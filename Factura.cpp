@@ -7,7 +7,7 @@
 using namespace std;
 
 
-void menu(){ //Menú de lo que puede hacer el programa
+void menu(){ //se muestra el menú inicial del cual se parte una vez ejecutado
 
 		cout<<"\n\n\n\t\t Bienvenido al centro de facturas del Hotel\n"<<endl;
 		cout<<"\t\t 1 - Realizar factura del cliente 1 "<<endl;
@@ -19,24 +19,24 @@ void menu(){ //Menú de lo que puede hacer el programa
 
 int main() {
 
-	int opcion; //Variable para escoger opción de salir o empezar
+	int opcion; //variable para poder elegir qué opción se quiere tomar
 	opcion=1;
 
-	int opcionProducto = 0;
+	int opcionProducto = 0; // esta variable sirve para elegir el producto en el caso del cliente 2
 	string nombre = "";
 	string apellido = "";
 	string direccion = "";
 	string numero = "";
 
-	int continua;//Variable para ciclar el prgrama
+	int continua;//variable para ciclar el programa en el while
 	continua=0;
 
-	while(continua ==0){ //Ciclo While
+	while(continua ==0){ //ciclo while para que no termine hasta que se presione 4 
 		menu();
 		cin>>opcion;
 
         if(opcion==1){
-
+//primer caso; se imprime el ticket y se muestra datos del producto, cliente y total
             cout<<"\n\t\t--TICKET--"<<endl;
             //Creo el objeto de la clase producto
             Producto producto1 ("Repuesto de sabanas",250, 2);
@@ -62,8 +62,7 @@ int main() {
             cout<<"\t\tNumero de ticket: "<<ticket1.getnumeroFolio()<<endl;
 
         }
-        //Esta opción es para demostrar que se pueden agregar mas de un
-        //producto
+        //en este caso el usuario decide qué item comprar y muestra la misma información que el anterior
         else if(opcion==2){
 
             cout<<"\n\t\t--TICKET--"<<endl;
@@ -81,26 +80,25 @@ int main() {
 
 
             Producto producto;
-
+// defino objeto de producto posible 1
             if (opcionProducto == 1){
                 producto.setArticulo ("Termo");
                 producto.setPrecio (800);
                 producto.setCantidad(1);
             }
-
+// defino objeto de producto posible 2
             if (opcionProducto == 2){
                 producto.setArticulo ("Toalla");
                 producto.setPrecio (350);
                 producto.setCantidad(3);
             }
-
+// defino objeto de producto posible 3
             if (opcionProducto == 3){
                 producto.setArticulo ("Antifaz");
                 producto.setPrecio (200);
                 producto.setCantidad(2);
             }
-
-
+// aquí el usuario ingresa su nombre, apellido, dirección y número para desplegarlo en pantalla
             Cliente clientePersonalizado (apellido, nombre, direccion, numero);
             Ticket ticket2 ("785241");
 
@@ -118,10 +116,8 @@ int main() {
 
         }
         else if(opcion==3){
-
-            //Utilizo estas sub-clases para los productos que sean únicamente de
-            //orden alimenticio y poder mostrar las calorias, tipo de cocina, sabor
-            //y mililitros de dichos productos
+//este caso incluye clases de comida y bebida para demostrar el tema de herencia y sus propios atributos (comida -> calorías y tipo de cocina)
+// y en caso de bebida -> mililitros y descripción del sabor
             cout<<"\n\t\t--TICKET--"<<endl;
             Comida comida1 ("Pasta Farfalle",370, 2, "180.85","Italiana");
             Comida comida2 ("Tlayuda de Milanesa", 110, 1, "260.56", "Mexicana");
@@ -152,12 +148,12 @@ int main() {
             cout<<"\t\tNumero de ticket: "<<ticket3.getnumeroFolio()<<endl;
 
            }
-           //Sale del Ciclo While
+           //sale del ciclo while
            else if(opcion==4){
 			cout<<"Disfruta tus productos"<<endl;
 			continua = continua+1;
            }
-
+	//valida otra opción fuera de 1,2,3 y 4
            else{
 			cout<<"Error: Opcion no valida"<<endl;
 			continua = continua+1;
