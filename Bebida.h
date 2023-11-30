@@ -4,6 +4,7 @@
 #define BEBIDA_H
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Producto.h"
 using namespace std;
 
@@ -14,11 +15,8 @@ class Bebida: public Producto{
         string gusto;
     public:
 
-     Bebida (string articulo_, int precio_, int cantidad_, string mililitros_, string gusto_):
-     Producto (articulo_, precio_, cantidad_){
-            mililitros = mililitros_;
-            gusto = gusto_;
-        }
+     Bebida (string articulo_, int precio_, int cantidad_, string mililitros_, string gusto_);
+
     //Getters
     string getMililitros();
     string getGusto();
@@ -26,18 +24,46 @@ class Bebida: public Producto{
     //Setters
     void setMililitros(string);
     void setGusto(string);
-    void imprimirBebida();
+
+
+    string imprimirBebida();
 
 };
 
-void Bebida::imprimirBebida(){
+Bebida::Bebida (string articulo_, int precio_, int cantidad_, string mililitros_, string gusto_): Producto (articulo_, precio_, cantidad_){
+    mililitros_ = mililitros_;
+    gusto = gusto_;
+}
 
-    cout<<"\n\t\t--TICKET--\n"<<endl;
-	cout<<"\t\tEl producto bebida: "<<getArticulo()<<endl;
-    cout<<"\t\tPrecio: "<<getPrecio()<<endl;
-    cout<<"\t\tCantidad de mililitros de la bebida (1 pieza): "<<mililitros<<endl;
-    cout<<"\t\tSabor de la bebida: "<<gusto<<endl;
-    cout<<"\t\tLa cantidad a pagar por "<<getCantidad()<<" "<<getArticulo()<<" es de "<<getPrecio()<< endl;
+string Bebida::getMililitros(){
+    return mililitros;
+}
+
+string Bebida::getGusto(){
+    return gusto;
+}
+
+void Bebida::setMililitros(string mililitros_){
+    mililitros = mililitros_;
+}
+
+void Bebida::setGusto(string gusto_){
+    gusto = gusto_;
+}
+
+string Bebida::imprimirBebida(){
+
+    string resultao;
+
+    resultao += "\n";
+    resultao += "\t\tEl producto bebida: " + getArticulo() + "\n";
+    resultao += "\t\tPrecio: " + to_string(getPrecio()) + "\n";
+    resultao += "\t\tCantidad de mililitros (1 pieza): " + mililitros + "\n";
+    resultao += "\t\tSabor de la bebida: " + gusto + "\n";
+    resultao += "\t\tLa cantidad a pagar por " + to_string(getCantidad()) + " " + getArticulo() + " es de " + to_string(getPrecio()) + "\n";
+
+    return resultao;
+
 
 }
 
