@@ -32,7 +32,7 @@ class Producto
         string ticket();
 
 //atributos de la clase
-    private:
+    protected:
         string articulo;
         int precio, cantidad, total;
 };
