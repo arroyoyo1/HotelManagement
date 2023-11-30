@@ -3,6 +3,7 @@
 #ifndef COMIDA_H
 #define COMIDA_H
 #include <string>
+#include <sstream>
 #include <iostream>
 #include "Producto.h"
 using namespace std;
@@ -14,11 +15,8 @@ class Comida: public Producto{
         string cocina;
     public:
 
-     Comida (string articulo_, int precio_, int cantidad_, string calorias_, string cocina_):
-     Producto (articulo_, precio_, cantidad_){
-            calorias = calorias_;
-            cocina = cocina_;
-        }
+     Comida (string articulo_, int precio_, int cantidad_, string calorias_, string cocina_);
+
     //Getters
     string getCocina();
     string getCalorias();
@@ -26,19 +24,45 @@ class Comida: public Producto{
     //Setters
     void setCocina(string);
     void setCalorias(string);
-    void imprimirComida();
+
+
+    string imprimirComida();
 
 };
 
-void Comida::imprimirComida(){
-
-    cout<<"\n\t\t--TICKET--\n"<<endl;
-	cout<<"\t\tEl producto comida: "<<getArticulo()<<endl;
-    cout<<"\t\tPrecio: "<<getPrecio()<<endl;
-    cout<<"\t\tTipo de cocina del platillo: "<<cocina<<endl;
-    cout<<"\t\tCantidad de calorias (1 pieza): "<<calorias<<" calorias"<<endl;
-    cout<<"\t\tLa cantidad a pagar por "<<getCantidad()<<" "<<getArticulo()<<" es de "<<getPrecio()<< endl;
-
+Comida::Comida (string articulo_, int precio_, int cantidad_, string calorias_, string cocina_): Producto (articulo_, precio_, cantidad_){
+    calorias = calorias_;
+    cocina = cocina_;
 }
 
+string Comida::getCocina(){
+    return cocina;
+}
+
+string Comida::getCalorias(){
+    return calorias;
+}
+
+void Comida::setCalorias(string calorias_){
+    calorias = calorias_;
+}
+
+void Comida::setCocina(string cocina_){
+    cocina = cocina_;
+}
+
+string Comida::imprimirComida() {
+
+    string result;
+
+    result += "\n";
+    result += "\t\tEl producto comida: " + getArticulo() + "\n";
+    result += "\t\tPrecio: " + to_string(getPrecio()) + "\n";
+    result += "\t\tTipo de cocina del platillo: " + cocina + "\n";
+    result += "\t\tCantidad de calorias (1 pieza): " + calorias + " calorias" + "\n";
+    result += "\t\tLa cantidad a pagar por " + to_string(getCantidad()) + " " + getArticulo() + " es de " + to_string(precioFinal()) + "\n";
+
+    return result;
+}
 #endif
+
