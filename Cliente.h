@@ -1,5 +1,3 @@
-//Clase Cliente
-
 #ifndef CLIENTE_H
 #define CLIENTE_H
 #include <string>
@@ -8,27 +6,29 @@ using namespace std;
 
 class Cliente
 {
+//atributos de la clase
     private:
         string nombre;
         string apellido;
         string direccion;
         string celular;
     public:
-    //Construcutor con parámetros
+    //defino el constructor con sus respectivos parámetros
     Cliente (string apellido_, string nombre_, string direccion_, string celular_);
-    //Getters
+    //getters de la clase
     string getNombre();
     string getApellido();
     string getDireccion();
     string getCelular();
-    //Setters
+    //setters de la clase
     void setNombre(string);
     void setApellido(string);
     void setDireccion(string);
     void setCelular(string);
+//método propio de la clase
     string imprimirInfo();
 };
-
+//implemento el constructor una vez definido
 Cliente::Cliente (string apellido_, string nombre_, string direccion_, string celular_){
     nombre = nombre_;
     apellido = apellido_;
@@ -60,6 +60,7 @@ void Cliente::setDireccion(string direccion_){
 void Cliente::setCelular(string celular_){
     celular = celular_;
 }
+//método que devuelve un string y no un void
 string Cliente::imprimirInfo() {
     string info;
 
