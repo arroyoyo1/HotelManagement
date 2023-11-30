@@ -14,13 +14,8 @@ class Cliente
         string direccion;
         string celular;
     public:
-    //Construcutor con par·metros
-    Cliente (string apellido_, string nombre_, string direccion_, string celular_){
-        nombre = nombre_;
-        apellido = apellido_;
-        direccion = direccion_;
-        celular = celular_;
-    }
+    //Construcutor con par√°metros
+    Cliente (string apellido_, string nombre_, string direccion_, string celular_);
     //Getters
     string getNombre();
     string getApellido();
@@ -31,8 +26,15 @@ class Cliente
     void setApellido(string);
     void setDireccion(string);
     void setCelular(string);
-    void imprimirInfo();
+    string imprimirInfo();
 };
+
+Cliente::Cliente (string apellido_, string nombre_, string direccion_, string celular_){
+    nombre = nombre_;
+    apellido = apellido_;
+    direccion = direccion_;
+    celular = celular_;
+}
 
 string Cliente::getNombre(){
     return nombre;
@@ -58,11 +60,16 @@ void Cliente::setDireccion(string direccion_){
 void Cliente::setCelular(string celular_){
     celular = celular_;
 }
-void Cliente::imprimirInfo(){
-    cout<<"\n\t\t--Cliente--\n"<<endl;
-	cout<<"\t\tCliente: "<<nombre<<" "<<apellido<<endl;
-    cout<<"\t\tDireccion: "<<direccion<<endl;
-    cout<<"\t\tCelular: "<<celular<<endl;
+string Cliente::imprimirInfo() {
+    string info;
+
+    info += "\n\t\t--Cliente--\n";
+    info += "\t\tCliente: " + nombre + " " + apellido + "\n";
+    info += "\t\tDireccion: " + direccion + "\n";
+    info += "\t\tCelular: " + celular + "\n";
+
+    return info;
 }
+
 
 #endif
