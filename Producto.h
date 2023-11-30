@@ -11,20 +11,11 @@ using namespace std;
 class Producto
 {
     public:
-        //Constrcutor sin parametros, solo inicialisamos valores
-       Producto(){
-            articulo = " ";
-            precio = 0;
-            cantidad = 0;
-            total = 0;
-        }
+        //Constrcutor sin parametros, solo inicializamos valores
+       Producto();
 
         //Constructor de parametros
-        Producto(string articulo_, int precio_, int cantidad_){
-            articulo = articulo_;
-            precio = precio_;
-            cantidad = cantidad_;
-        }
+        Producto(string articulo_, int precio_, int cantidad_);
 
 
         //Setters
@@ -37,14 +28,25 @@ class Producto
         int getPrecio();
         int getCantidad();
         int precioFinal();
-        void ticket();
+        string ticket();
 
 
     private:
         string articulo;
         int precio, cantidad, total;
 };
+Producto::Producto(){
+    articulo = " ";
+    precio = 0;
+    cantidad = 0;
+    total = 0;
+}
 
+Producto::Producto(string articulo_, int precio_, int cantidad_){
+            articulo = articulo_ ;
+            precio = precio_ ;
+            cantidad = cantidad_;
+        }
 
 string Producto::getArticulo(){
     return articulo;
@@ -74,14 +76,19 @@ int Producto::precioFinal(){
     total = precio*cantidad;
     return total;
 }
-//Funcion para imprimir datos
-void Producto::ticket(){
+//Función para imprimir datos
+string Producto::ticket() {
+    stringstream ss;
 
-    cout<<"\n\t\tEl producto es: "<<articulo<<endl;
-    cout<<"\t\tPrecio: "<<precio<<endl;
-    cout<<"\t\tCantidad: "<<cantidad<<endl;
-    cout<<"\t\tLa cantidad a pagar por "<<cantidad<<" "<<articulo<<" es de "<<total<< endl;
+    ss << "\n\t\tEl producto es: " << articulo << endl;
+    ss << "\t\tPrecio: " << precio << endl;
+    ss << "\t\tCantidad: " << cantidad << endl;
+    ss << "\t\tLa cantidad a pagar por " << cantidad << " " << articulo << " es de " << total << endl;
 
-};
+    // Return the concatenated string
+    return ss.str();
+}
+
 
 #endif
+
