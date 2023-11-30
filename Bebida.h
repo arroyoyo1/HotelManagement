@@ -1,5 +1,3 @@
-//Clase Bebida
-
 #ifndef BEBIDA_H
 #define BEBIDA_H
 #include <string>
@@ -8,33 +6,34 @@
 #include "Producto.h"
 using namespace std;
 
-//Hereda atributos de la clase producto
+//pongo la sintaxis para indicar que hereda los atributos de producto
 class Bebida: public Producto{
+//atributos propios de bebida
     private:
         string mililitros;
         string gusto;
     public:
-
+//inicializo el constructor sin implementar, solo inicializo
      Bebida (string articulo_, int precio_, int cantidad_, string mililitros_, string gusto_);
 
-    //Getters
+    //getters de la clase
     string getMililitros();
     string getGusto();
 
-    //Setters
+    //setters de la clase
     void setMililitros(string);
     void setGusto(string);
 
-
+    //método propio de bebida
     string imprimirBebida();
 
 };
-
+//constructor implementado y agregando los atributos propios de la clase
 Bebida::Bebida (string articulo_, int precio_, int cantidad_, string mililitros_, string gusto_): Producto (articulo_, precio_, cantidad_){
     mililitros_ = mililitros_;
     gusto = gusto_;
 }
-
+//implemento getters
 string Bebida::getMililitros(){
     return mililitros;
 }
@@ -42,7 +41,7 @@ string Bebida::getMililitros(){
 string Bebida::getGusto(){
     return gusto;
 }
-
+//implemento setters
 void Bebida::setMililitros(string mililitros_){
     mililitros = mililitros_;
 }
@@ -50,7 +49,7 @@ void Bebida::setMililitros(string mililitros_){
 void Bebida::setGusto(string gusto_){
     gusto = gusto_;
 }
-
+//método propio que devuelve un string
 string Bebida::imprimirBebida(){
 
     string resultao;
