@@ -1,5 +1,3 @@
-//Clase Producto
-
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
 #include <string>
@@ -7,41 +5,45 @@
 
 using namespace std;
 
-
+//defino la clase con la palabra reservada
 class Producto
 {
+//también defino el constructor vacío y con parámetros
     public:
-        //Constrcutor sin parametros, solo inicializamos valores
+       
        Producto();
 
-        //Constructor de parametros
+    
         Producto(string articulo_, int precio_, int cantidad_);
 
 
-        //Setters
+        //setters
         void setArticulo(string);
         void setPrecio(int);
         void setCantidad(int);
 
-        //Getters
+        //getters
         string getArticulo();
         int getPrecio();
         int getCantidad();
         int precioFinal();
+
+//método especial de Producto
         string ticket();
 
-
+//atributos de la clase
     private:
         string articulo;
         int precio, cantidad, total;
 };
+//constructor implementado pero con valores default 
 Producto::Producto(){
     articulo = " ";
     precio = 0;
     cantidad = 0;
     total = 0;
 }
-
+//constructor implementado e inicializado con los valores que tomará
 Producto::Producto(string articulo_, int precio_, int cantidad_){
             articulo = articulo_ ;
             precio = precio_ ;
@@ -76,7 +78,7 @@ int Producto::precioFinal(){
     total = precio*cantidad;
     return total;
 }
-//Función para imprimir datos
+//función para imprimir datos del producto
 string Producto::ticket() {
     stringstream ss;
 
@@ -85,7 +87,7 @@ string Producto::ticket() {
     ss << "\t\tCantidad: " << cantidad << endl;
     ss << "\t\tLa cantidad a pagar por " << cantidad << " " << articulo << " es de " << total << endl;
 
-    // Return the concatenated string
+    // regresa la info de la variable concatenada
     return ss.str();
 }
 
